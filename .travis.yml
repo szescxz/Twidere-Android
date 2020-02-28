@@ -63,7 +63,7 @@ deploy:
   - provider: releases
     prerelease: true
     api_key:
-      secure: "S1GSwQPN1ffS1wMmkNwKY7HlZbVysfn3LJa318gKbIB2RdnNoLT6xuZSWhe5mAI41yG45wkUpfK9fah6ueZFEd74+xy4q2aqaJDhhi/xqys/8VkODaNsHMkE2aWqnWqAcRBNRA1j8eFFZDjgge1t2x924U7jDEQaOOHHHQ58lxA="
+      secure: "dJjeFKg4EHfV5Mp7TCDjL+ZYHkKXlZ7lDlPKpjlWnqDOfX5o1Fdjq8C2G7r7IydQOeWbN7e+O3tR0GESA8Yk2d2nExsZhiW29+fZAn7nEvpLyVUJUXsi5zAAiSV/+T5cPVH3nhb9KhT4qYGxbY6+rclP8cRT/OUANCIDGma4/h/Hz9QiRImMMORnwxZWO++PVUkqcAB6aU/xjHPAL64XrgYcU+eo4hpVLcDvvZhkTV1LZaWEggwbq2nga2fTKtyEZTovL6aiTjNXX4REU9Ed6VmeQjjHVNbSWSsPR7QiuCkzGoiPClPBcCCV77Qj58Y6IgNeAgmL6dqVi35t+QArQknu+ALZc+Jd8VY581vOVfbTwj6f5a+Bg9f4nDmFNC9TCxot5QqIMzC+f5jBoqHZjCA2FgfP3uiYP+bp0Mt5vsfrDNI76cMyOnOZ0AA0PotG6Kc0U4Q365IULqiUG0Z+cXU72X68xQe+0HdhFoEyLmaFhCKpmrL+aT2QiCL9MTJ0Z8eBMmRPqv08rLpVlhbxdOF7d9G04tdrmGyEbn34b+zF5mbcgyliDXKAyqJZyEF0T/x5ZHImy/oXlf0JQTMXpph5RT8tQRpl7mVsYHQzQ4opg2KK5yp7ofMfrHskM5p747Bk7TEX8vM6nEtuXGHetF7q82xNxWYlIkOX7+n5/Fc="
     file_glob: true
     file: '**/*-release.apk'
     skip_cleanup: true
@@ -78,9 +78,9 @@ deploy:
   #     repo: TwidereProject/Twidere-Android
   #     tags: true
   # Upload common component library to Bintray
-  - provider: script
-    script: ./gradlew twidere.component.common:bintrayUpload
-    skip_cleanup: true
-    on:
-      repo: TwidereProject/Twidere-Android
-      tags: true
+  # - provider: script
+  #   script: ./gradlew twidere.component.common:bintrayUpload
+  #   skip_cleanup: true
+  #   on:
+  #     repo: TwidereProject/Twidere-Android
+  #     tags: true
