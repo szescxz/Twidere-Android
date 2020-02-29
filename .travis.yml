@@ -40,24 +40,24 @@ cache:
     - $HOME/.m2/
 
 before_install:
-  - ./travis/scripts/decode_private_configs.sh
+  # - ./travis/scripts/decode_private_configs.sh
   # https://github.com/travis-ci/travis-ci/issues/8651
   - yes | sdkmanager "platforms;android-29"
   -
 install:
   - rvm default exec gem install fastlane
-  - ./travis/scripts/fetch_private_files.sh
+  # - ./travis/scripts/fetch_private_files.sh
   - cat ./travis/configs/gradle.properties > ./gradle.properties
 
-before_script:
-  # Validate if Google components fetched successfully
-  - ./travis/scripts/test_private_files.sh
+# before_script:
+#   # Validate if Google components fetched successfully
+#   - ./travis/scripts/test_private_files.sh
 
 script:
   - ./gradlew build -x lint
 
-after_failure:
-  - ./travis/scripts/upload_error_logs.sh
+# after_failure:
+#   - ./travis/scripts/upload_error_logs.sh
 
 deploy:
   - provider: releases
