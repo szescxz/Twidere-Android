@@ -24,9 +24,6 @@ gradle-app.setting
 ehthumbs.db
 Thumbs.db
 
-# Private files
-/private
-
 # Local files
 /captures
 /reports

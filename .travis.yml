@@ -43,13 +43,15 @@ before_install:
   # - ./travis/scripts/decode_private_configs.sh
   # https://github.com/travis-ci/travis-ci/issues/8651
   - yes | sdkmanager "platforms;android-29"
-  -
+
 install:
   - rvm default exec gem install fastlane
   # - ./travis/scripts/fetch_private_files.sh
   - cat ./travis/configs/gradle.properties > ./gradle.properties
 
-# before_script:
+before_script:
+  - sed -i -e '/START Non-FOSS component/,/END Non-FOSS component/d' twidere/build.gradle
+  - sed -i -e '/^bintray/,$d' twidere.component.common/build.gradle
 #   # Validate if Google components fetched successfully
 #   - ./travis/scripts/test_private_files.sh
 
