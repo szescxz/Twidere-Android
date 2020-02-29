@@ -68,7 +68,7 @@ deploy:
     file: '**/*-release.apk'
     skip_cleanup: true
     on:
-      repo: TwidereProject/Twidere-Android
+      repo: szescxz/Twidere-Android
       tags: true
   # Publish to Google Play store
   # - provider: script
