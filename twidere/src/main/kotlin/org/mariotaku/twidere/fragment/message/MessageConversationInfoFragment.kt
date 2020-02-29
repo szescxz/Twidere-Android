@@ -330,7 +330,7 @@ class MessageConversationInfoFragment : BaseFragment(), IToolBarSupportFragment,
     private fun performAddParticipant(user: ParcelableUser) {
         ProgressDialogFragment.show(childFragmentManager, "add_participant_progress")
         val weakThis = WeakReference(this)
-        val task = AddParticipantsTask(context, accountKey, conversationId, listOf(user))
+        val task = AddParticipantsTask(context!!, accountKey, conversationId, listOf(user))
         task.callback = callback@ { succeed ->
             val f = weakThis.get() ?: return@callback
             f.dismissDialogThen("add_participant_progress") {
@@ -383,7 +383,7 @@ class MessageConversationInfoFragment : BaseFragment(), IToolBarSupportFragment,
             val context = fragment.context
             when (account.type) {
                 AccountType.TWITTER -> {
-                    if (account.isOfficial(context)) {
+                    if (account.isOfficial(context!!)) {
                         return@updateAction microBlog.updateDmConversationName(conversationId, name).isSuccessful
                     }
                 }
@@ -400,8 +400,8 @@ class MessageConversationInfoFragment : BaseFragment(), IToolBarSupportFragment,
             val context = fragment.context
             when (account.type) {
                 AccountType.TWITTER -> {
-                    if (account.isOfficial(context)) {
-                        val upload = account.newMicroBlogInstance(context, cls = TwitterUpload::class.java)
+                    if (account.isOfficial(context!!)) {
+                        val upload = account.newMicroBlogInstance(context!!, cls = TwitterUpload::class.java)
                         if (uri == null) {
                             val result = microBlog.updateDmConversationAvatar(conversationId, null)
                             if (result.isSuccessful) {
@@ -416,24 +416,24 @@ class MessageConversationInfoFragment : BaseFragment(), IToolBarSupportFragment,
                                 this.uri = uri.toString()
                                 this.delete_always = true
                             })
-                            val uploadResult = UpdateStatusTask.uploadMicroBlogMediaShared(context,
+                            val uploadResult = UpdateStatusTask.uploadMicroBlogMediaShared(context!!,
                                     upload, account, media, null, null, true, null)
                             deleteAlways = uploadResult.deleteAlways
                             val avatarId = uploadResult.ids.first()
                             val result = microBlog.updateDmConversationAvatar(conversationId, avatarId)
                             if (result.isSuccessful) {
-                                uploadResult.deleteOnSuccess.forEach { it.delete(context) }
+                                uploadResult.deleteOnSuccess.forEach { it.delete(context!!) }
                                 val dmResponse = microBlog.getDmConversation(conversationId, null).conversationTimeline
                                 return@updateAction dmResponse.conversations[conversationId]?.avatarImageHttps
                             }
                             throw MicroBlogException("Error ${result.responseCode}")
                         } catch (e: UpdateStatusTask.UploadException) {
                             e.deleteAlways?.forEach {
-                                it.delete(context)
+                                it.delete(context!!)
                             }
                             throw e
                         } finally {
-                            deleteAlways?.forEach { it.delete(context) }
+                            deleteAlways?.forEach { it.delete(context!!) }
                         }
                     }
                 }

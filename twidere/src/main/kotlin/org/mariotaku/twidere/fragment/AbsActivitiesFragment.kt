@@ -306,7 +306,7 @@ abstract class AbsActivitiesFragment protected constructor() :
     override fun onGapClick(holder: GapViewHolder, position: Int) {
         val activity = adapter.getActivity(position)
         DebugLog.v(msg = "Load activity gap $activity")
-        if (!AccountUtils.isOfficial(context, activity.account_key)) {
+        if (!AccountUtils.isOfficial(context!!, activity.account_key)) {
             // Skip if item is not a status
             if (activity.action !in Activity.Action.MENTION_ACTIONS) {
                 adapter.removeGapLoadingId(ObjectId(activity.account_key, activity.id))
